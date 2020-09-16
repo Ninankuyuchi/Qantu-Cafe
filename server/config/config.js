@@ -20,7 +20,8 @@ const uri = "mongodb+srv://qantu:qantuqantu123@cluster0.o7wpo.mongodb.net/cafe?r
 if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/cafe';
 } else {
-    urlDB = uri;
+    //urlDB = uri;
+    urlDB = process.env.MONGO_URI;
 }
 process.env.URLDB = urlDB;
 
