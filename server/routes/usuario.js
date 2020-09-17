@@ -12,15 +12,31 @@ Utilizaremos el elsquema Usuario como modelo para grabar en la base de datos
 */
 const Usuario = require('../models/usuario.js');
 
-
+//usaremos destructuracion para llamar la funcion verificaToken de autenticacion.js carpeta middlewares
+const { verificaToken, verificaAdmin_ROLE } = require('../middlewares/autenticacion');
 const app = express();
 
 app.get('/', (req, res) => {
     res.json('Hola Mundo');
 });
 
-app.get('/usuario', function(req, res) {
+/*
+Los middleware se colocan como segundo argumento usando lo que express
+el segundo argumento es un callback
+*/
 
+app.get('/usuario', verificaToken, (req, res) => {
+
+    /*
+    usamos usuario autenticado, pasado de verificaToken
+    */
+    /*  
+        return res.json({
+            usuario: req.usuario,
+            nombre: req.usuario.nombre,
+            email: req.usuario.email
+        });
+    */
     /*
     find regresa todo
     1. puedo especificar la condicion,
@@ -62,7 +78,8 @@ app.get('/usuario', function(req, res) {
         });
 });
 
-app.post('/usuario', (req, res) => {
+//debo mandar dos middlewares
+app.post('/usuario', [verificaToken, verificaAdmin_ROLE], (req, res) => {
 
     let body = req.body;
 
@@ -101,7 +118,7 @@ app.post('/usuario', (req, res) => {
 
 });
 
-app.put('/usuario/:id', (req, res) => {
+app.put('/usuario/:id', [verificaToken, verificaAdmin_ROLE], (req, res) => {
 
     let id = req.params.id;
 
@@ -140,7 +157,7 @@ app.put('/usuario/:id', (req, res) => {
 
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdmin_ROLE], function(req, res) {
 
     //saber el id del objeto a borrar
     let id = req.params.id;

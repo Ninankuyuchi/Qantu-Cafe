@@ -17,8 +17,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //importar y usar las rutas del usuario>>
+/*
 app.use(require('./routes/usuario'));
-
+app.use(require('./routes/login'));
+*/
+// Declaracion de usa sola ruta
+app.use(require('./routes/index'));
 
 
 //Establecer la conexion con la base de datos
