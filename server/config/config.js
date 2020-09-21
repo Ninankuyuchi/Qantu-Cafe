@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'dev') {
 }
 process.env.URLDB = urlDB;
 
-/*
-mongodb://mongodb+srv://qantu:<password>@cluster0.o7wpo.mongodb.net/<dbname>?retryWrites=true&w=majority
-mongodb://<dbuser>:<dbpassword>@cluster0.o7wpo.mongodb.net/cafe
-*/
+//////////////////////
+//Google CLIENT ID
+//////////////////////
+process.env.CLIENT_ID = process.env.CLIENT_ID || '845431137480-uf2sgct4nqq9u8t5cqp8l5esvvnef25e.apps.googleusercontent.com';

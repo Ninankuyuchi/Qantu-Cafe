@@ -5,6 +5,8 @@ const express = require('express');
 //declarar la constante mongoose   
 const mongoose = require('mongoose');
 
+//se importa el path como ayuda para que inspeccione la direccion de google singin dentro de la carpeta public
+const path = require('path');
 
 const app = express();
 
@@ -15,6 +17,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+//Habilitar el public index singin google, carpeta public
+// implementar el middleware para hacer publico todo el directorio
+app.use(express.static(path.resolve(__dirname, '../public')));
+//console.log(path.resolve(__dirname, '../public'));
 
 //importar y usar las rutas del usuario>>
 /*
