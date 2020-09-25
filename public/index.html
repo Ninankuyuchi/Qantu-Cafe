@@ -15,7 +15,12 @@
 
 <body>
 
-    <!--Agrega boton de google y entrara a la funcion dentro del script-->
+
+    <!-- <img src="http://localhost:3000/imagen/usuarios/5f600bf8ebc9716bbc72f39d-50.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjp0cnVlLCJnb29nbGUiOnRydWUsIl9pZCI6IjVmNjAwYmY4ZWJjOTcxNmJiYzcyZjM5ZCIsIm5vbWJyZSI6IlFhbnR1IDEiLCJlbWFpbCI6InFhbnR1MUBnbWFpbC5jb20iLCJfX3YiOjAsImltZyI6IjVmNjAwYmY4ZWJjOTcxNmJiYzcyZjM5ZC01MC5qcGcifSwiaWF0IjoxNjAxMDQ1ODYwLCJleHAiOjE2MDEyMTg2NjB9.iVroknhTmmWsLfGcTK-4z1xDAW3-X5i3AgfakJeHozU"
+        alt="">
+    -->
+
+    <!--Agrega boton de google y entrara a la funcion dentro del script -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <a href="#" onclick="signOut();">Sign out</a>
@@ -27,7 +32,7 @@
             });
         }
     </script>
-
+    <!--ss-->
     <script>
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
@@ -36,11 +41,12 @@
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-            //obtención del token
+
             var id_token = googleUser.getAuthResponse().id_token;
+
             console.log(id_token);
 
-            //mandar nuestro id_token a nuestro servidor mediante un post hhtps
+
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/google');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -48,6 +54,7 @@
                 console.log('Signed in as: ' + xhr.responseText);
             };
             xhr.send('idtoken=' + id_token);
+
         }
     </script>
 
